@@ -1,42 +1,38 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class TrainConsistManagementSystem {
+class Wagon {
+    private String id;
+    private String type;
 
-    static class Bogie {
-        String name;
-        int capacity;
-
-        Bogie(String name, int capacity) {
-            this.name = name;
-            this.capacity = capacity;
-        }
-
-        public String toString() {
-            return "Bogie: " + name + ", Capacity: " + capacity;
-        }
+    public Wagon(String id, String type) {
+        this.id = id;
+        this.type = type;
     }
 
+    public String toString() {
+        return "Wagon ID: " + id + ", Type: " + type;
+    }
+}
+
+public class TrainConsistManagementSystem {
     public static void main(String[] args) {
         System.out.println("==================================");
-        System.out.println(" UC8 - Filter Passenger Bogies Using Streams ");
+        System.out.println("    Train Consist Management App   ");
         System.out.println("==================================");
 
-        List<Bogie> bogies = new ArrayList<>();
-        bogies.add(new Bogie("Sleeper PB101", 72));
-        bogies.add(new Bogie("AC Chair PB102", 60));
-        bogies.add(new Bogie("First Class PB103", 40));
-        bogies.add(new Bogie("Sleeper PB104", 68));
+        List<Wagon> trainConsist = new ArrayList<>();
 
-        System.out.println("All Passenger Bogies:");
-        bogies.forEach(System.out::println);
+        trainConsist.add(new Wagon("P001", "Passenger - Sleeper"));
+        trainConsist.add(new Wagon("P002", "Passenger - AC Chair"));
+        trainConsist.add(new Wagon("G001", "Goods - Rectangular"));
+        trainConsist.add(new Wagon("G002", "Goods - Cylindrical"));
 
-        List<Bogie> highCapacityBogies = bogies.stream()
-                .filter(b -> b.capacity >= 60)
-                .collect(Collectors.toList());
+        System.out.println("Train initialized successfully.\n");
 
-        System.out.println("\nFiltered Passenger Bogies (Capacity >= 60):");
-        highCapacityBogies.forEach(System.out::println);
+        System.out.println("Train Consist Summary:");
+        for (Wagon wagon : trainConsist) {
+            System.out.println(wagon);
+        }
     }
 }
