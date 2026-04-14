@@ -1,47 +1,38 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-public class TrainConsistManagementSystem {
+class Wagon {
+    private String id;
+    private String type;
 
-    static class Bogie {
-        String name;
-        int capacity;
-
-        Bogie(String name, int capacity) {
-            this.name = name;
-            this.capacity = capacity;
-        }
-
-        public String toString() {
-            return "Bogie: " + name + ", Capacity: " + capacity;
-        }
+    public Wagon(String id, String type) {
+        this.id = id;
+        this.type = type;
     }
 
+    public String toString() {
+        return "Wagon ID: " + id + ", Type: " + type;
+    }
+}
+
+public class TrainConsistManagementSystem {
     public static void main(String[] args) {
         System.out.println("==================================");
-        System.out.println(" UC9 - Group Bogies by Type ");
+        System.out.println("    Train Consist Management App   ");
         System.out.println("==================================");
 
-        List<Bogie> bogies = new ArrayList<>();
-        bogies.add(new Bogie("Sleeper", 72));
-        bogies.add(new Bogie("AC Chair", 56));
-        bogies.add(new Bogie("First Class", 24));
-        bogies.add(new Bogie("Sleeper", 70));
-        bogies.add(new Bogie("AC Chair", 60));
+        List<Wagon> trainConsist = new ArrayList<>();
 
-        System.out.println("All Bogies:");
-        bogies.forEach(System.out::println);
+        trainConsist.add(new Wagon("P001", "Passenger - Sleeper"));
+        trainConsist.add(new Wagon("P002", "Passenger - AC Chair"));
+        trainConsist.add(new Wagon("G001", "Goods - Rectangular"));
+        trainConsist.add(new Wagon("G002", "Goods - Cylindrical"));
 
-        Map<String, List<Bogie>> groupedBogies = bogies.stream()
-                .collect(Collectors.groupingBy(b -> b.name));
+        System.out.println("Train initialized successfully.\n");
 
-        System.out.println("\nGrouped Bogies:");
-        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
-            System.out.println("Bogie Type: " + entry.getKey());
-            entry.getValue().forEach(System.out::println);
-            System.out.println();
+        System.out.println("Train Consist Summary:");
+        for (Wagon wagon : trainConsist) {
+            System.out.println(wagon);
         }
     }
 }
